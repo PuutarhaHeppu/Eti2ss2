@@ -1,13 +1,14 @@
-
 const cardObjectDefinitions = [
-    {id:1, imagePath:'/images/card-KingHearts.png'},
-    {id:2, imagePath:'/images/card-JackClubs.png'},
-    {id:3, imagePath:'/images/card-QueenDiamonds.png'},
-    {id:4, imagePath:'/images/card-AceSpades.png'}
+    {id:1, imagePath:'images/card-KingHearts.png'},
+    {id:2, imagePath:'images/card-JackClubs.png'},
+    {id:3, imagePath:'images/card-QueenDiamonds.png'},
+    {id:4, imagePath:'images/card-AceSpades.png'},
+    {id:5, imagePath:'images/card-QueenDiamonds.png'},
+    {id:6, imagePath:'images/card-JackClubs.png'}
 ]
 const aceId = 4
 
-const cardBackImgPath = '/images/card-back-blue.png'
+const cardBackImgPath = 'images/card-back-blue.png'
 
 let cards = []
 
@@ -15,13 +16,12 @@ const playGameButtonElem = document.getElementById('playGame')
 
 const cardContainerElem = document.querySelector('.card-container')
 
-const collapsedGridAreaTemplate = '"a a" "a a"'
+const collapsedGridAreaTemplate = '"a a" "a a" "a a"'
 const cardCollectionCellClass = ".card-pos-a"
 
 const numCards = cardObjectDefinitions.length
 
 let cardPositions = []
-
 
 let gameInProgress = false 
 let shufflingInProgress = false 
@@ -327,7 +327,7 @@ function cardFlyInEffect()
             clearInterval(id)
             playGameButtonElem.style.display = "inline-block"            
         }
-        if(count == 1 || count == 250 || count == 500 || count == 750)
+        if(count == 1 || count == 250 || count == 500 || count == 750 || count == 1000 || count == 1250)
         {
             cardCount++
             let card = document.getElementById(cardCount)
@@ -416,42 +416,30 @@ function dealCards()
 }
 function returnGridAreasMappedToCardPos()
 {
-    let firstPart = ""
-    let secondPart = ""
     let areas = ""
-
+    
     cards.forEach((card, index) => {
-        if(cardPositions[index] == 1)
-        {
+        if(cardPositions[index] == 1) {
             areas = areas + "a "
         }
-        else if(cardPositions[index] == 2)
-        {
+        else if(cardPositions[index] == 2) {
             areas = areas + "b "
         }
-        else if (cardPositions[index] == 3)
-        {
+        else if (cardPositions[index] == 3) {
             areas = areas + "c "
         }
-        else if (cardPositions[index] == 4)
-        {
+        else if (cardPositions[index] == 4) {
             areas = areas + "d "
         }
-        if (index == 1)
-        {
-            firstPart = areas.substring(0, areas.length - 1)
-            areas = "";
+        else if (cardPositions[index] == 5) {
+            areas = areas + "e "
         }
-        else if (index == 3)
-        {
-            secondPart = areas.substring(0, areas.length - 1)
+        else if (cardPositions[index] == 6) {
+            areas = areas + "f "
         }
-
     })
 
-    return `"${firstPart}" "${secondPart}"`
-
-
+    return `"${areas.slice(0,5)}" "${areas.slice(6,11)}"`
 }
 
 
@@ -557,6 +545,7 @@ function addSrcToImageElem(imgElem, src){
     imgElem.src = src
 }
 function addChildElement(parentElem, childElem){
+
     parentElem.appendChild(childElem)
 }
 
@@ -586,6 +575,14 @@ function mapCardIdToGridCell(card){
     else if(card.id == 4)
     {
         return '.card-pos-d'
+    }
+    else if(card.id == 5)
+    {
+        return '.card-pos-e'
+    }
+    else if(card.id == 6)
+    {
+        return '.card-pos-f'
     }
 }
 

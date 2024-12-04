@@ -31,13 +31,13 @@ main{
 
 .card-container{
     position: relative;
-    height:100%;
-    width:calc(var(--card-width-lg) * (var(--num-cards) / 2) + var(--card-horizontal-space-lg));
+    height:140%;
+    width:calc(var(--card-width-lg) * (var(--num-cards) / 1.4) + var(--card-horizontal-space-lg));
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: "a b"
-                         "c d";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: "a b c"
+                         "d e f";
 
 }
 
@@ -57,7 +57,15 @@ main{
     grid-area: d;
     /* background-color: darkcyan; */
 }
-.card-pos-a, .card-pos-b,.card-pos-c,.card-pos-d{
+.card-pos-e{
+    grid-area: e;
+    /* background-color: aqua; */
+}
+.card-pos-f{ 
+    grid-area: f;
+    /* background-color: darkcyan; */
+}
+.card-pos-a, .card-pos-b, .card-pos-c, .card-pos-d, .card-pos-e, .card-pos-f{
     display:flex;
     justify-content: center;
     align-items: center;
